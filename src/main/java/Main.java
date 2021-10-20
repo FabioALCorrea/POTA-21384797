@@ -4,15 +4,11 @@ import java.io.File;
 import java.lang.Exception;
 import java.io.IOException;
 
+public class Main {
 
-public class NewMain {
-
-    
-    public static void main(String[] args) {
     private static String clientes_FILENAME = "arquivoDados.csv";
     private static String KEY_ELEMENT_INDEX = "elementIndex";
     private static String KEY_COMPARISON_COUNT = "comparisonCount";
-
 
     public static void main(String[] args) throws IOException {
         Scanner opScanner = new Scanner(System.in);
@@ -28,7 +24,7 @@ public class NewMain {
             System.out.println("2 - Buscar cliente");
             System.out.println("0 - Sair");
             op = opScanner.nextInt();
-            
+
             if (op == 1) {
                 displayclientes(clientes);
             } else if (op == 2) {
@@ -47,7 +43,7 @@ public class NewMain {
             }
         }
     }
-    
+
     public static ArrayList<Cliente> readclientesFile() {
         try {
             ArrayList<Cliente> clientes = new ArrayList<>();
@@ -60,10 +56,9 @@ public class NewMain {
                 String linha = scanner.nextLine();
 
                 // quebrando a linha por ","
-                String[] partes = linha.split(","); 
-                
-                // adicionado no array cada cliente
+                String[] partes = linha.split(",");
 
+                // adicionado no array cada cliente
                 int age = 0;
                 if (partes[6].matches("\\d+")) {
                     age = java.lang.Integer.parseInt(partes[6]);
@@ -100,20 +95,18 @@ public class NewMain {
             System.out.println("Quantidade de comparações: " + comparisonCount);
         }
     }
-    
 
     public static Map<String, Integer> recursiveBinarySearch(ArrayList<Cliente> clientes, int start, int end, String search, int count) {
         int mid = start + (end - start) / 2;
 
         if (mid > clientes.size() - 1
-            || mid < 0
-            || (mid == 0 && clientes.get(mid).nome.compareTo(search) != 0)
-            || (mid == clientes.size() && clientes.get(mid).nome.compareTo(search) != 0)
-        ) {
+                || mid < 0
+                || (mid == 0 && clientes.get(mid).nome.compareTo(search) != 0)
+                || (mid == clientes.size() && clientes.get(mid).nome.compareTo(search) != 0)) {
             return makeResult(-1, count + 1);
         }
 
-        if (clientes.get(mid).nome.compareTo(search) == 0){
+        if (clientes.get(mid).nome.compareTo(search) == 0) {
             return makeResult(mid, count + 1);
         }
 
@@ -144,15 +137,11 @@ public class NewMain {
         normalized = normalized.replaceAll("[^\\p{ASCII}]", "");
         return normalized;
 
+        /**
+         * Erik Felintro Kamite RA:21420243 William Roberto da silva RA:21384797
+         * Juliana Silva e Souza RA:21434583 Fábio Augusto de lima Corrêa
+         * RA:21427394
+         */
+    }
 
-     /**
-       *Erik Felintro Kamite RA:21420243
-       *William Roberto da silva RA:21384797
-       *Juliana Silva e Souza RA:21434583
-       *Fábio Augusto de lima Corrêa RA:21427394
-      */
-    }
-        
-    }
-    
 }
